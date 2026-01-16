@@ -1,0 +1,75 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { SITE } from "@/config";
+
+const books = [
+  {
+    title: "Designing Data-Intensive Applications",
+    author: "Martin Kleppmann",
+    description: "The definitive guide to building reliable, scalable, and maintainable systems. Covers everything from data models to distributed systems.",
+    link: "https://dataintensive.net/",
+  },
+  {
+    title: "System Design Interview",
+    author: "Alex Xu",
+    description: "Practical guide to system design with real-world examples. Great for interview prep and understanding large-scale system architecture.",
+    link: "https://www.amazon.com/System-Design-Interview-insiders-Second/dp/B08CMF2CQF",
+  },
+  {
+    title: "The Go Programming Language",
+    author: "Alan A. A. Donovan & Brian W. Kernighan",
+    description: "The authoritative resource on Go, written by language experts. Essential for mastering Go's idioms and best practices.",
+    link: "https://www.gopl.io/",
+  },
+  {
+    title: "Database Internals",
+    author: "Alex Petrov",
+    description: "Deep dive into how databases work under the hood. Covers storage engines, distributed systems, and consensus protocols.",
+    link: "https://www.databass.dev/",
+  },
+  {
+    title: "Clean Architecture",
+    author: "Robert C. Martin",
+    description: "Principles of software architecture that stand the test of time. Focus on dependency management and system boundaries.",
+    link: "https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164",
+  },
+];
+---
+
+<Layout title={`Books | ${SITE.title}`}>
+  <Header />
+  <main id="main-content" class="app-layout">
+    <section class="pt-8 pb-6">
+      <h1 class="text-3xl font-bold sm:text-4xl">Books</h1>
+      <p class="mt-4 text-text-secondary">
+        Books that have shaped my understanding of backend engineering and system design.
+      </p>
+    </section>
+
+    <section class="pb-12">
+      <ul class="grid gap-4">
+        {books.map((book) => (
+          <li class="rounded-lg border border-border bg-background p-5 transition-all hover:border-accent/50">
+            <a
+              href={book.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block"
+            >
+              <h2 class="text-lg font-semibold hover:text-accent">
+                {book.title}
+              </h2>
+              <p class="mt-1 text-sm text-text-secondary">
+                by {book.author}
+              </p>
+              <p class="mt-2 text-text-secondary">{book.description}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </main>
+  <Footer />
+</Layout>

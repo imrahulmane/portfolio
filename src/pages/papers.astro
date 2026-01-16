@@ -1,0 +1,85 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { SITE } from "@/config";
+
+const papers = [
+  {
+    title: "MapReduce: Simplified Data Processing on Large Clusters",
+    authors: "Jeffrey Dean and Sanjay Ghemawat",
+    year: "2004",
+    venue: "OSDI",
+    link: "https://research.google/pubs/pub62/",
+    description: "The foundational paper on distributed data processing that shaped modern big data systems.",
+  },
+  {
+    title: "Dynamo: Amazon's Highly Available Key-value Store",
+    authors: "Giuseppe DeCandia et al.",
+    year: "2007",
+    venue: "SOSP",
+    link: "https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf",
+    description: "Introduced concepts like consistent hashing, vector clocks, and eventual consistency.",
+  },
+  {
+    title: "Bigtable: A Distributed Storage System for Structured Data",
+    authors: "Fay Chang et al.",
+    year: "2006",
+    venue: "OSDI",
+    link: "https://research.google/pubs/pub27898/",
+    description: "The design behind Google's distributed storage system, inspiring HBase and Cassandra.",
+  },
+  {
+    title: "In Search of an Understandable Consensus Algorithm (Raft)",
+    authors: "Diego Ongaro and John Ousterhout",
+    year: "2014",
+    venue: "USENIX ATC",
+    link: "https://raft.github.io/raft.pdf",
+    description: "A more understandable alternative to Paxos for implementing distributed consensus.",
+  },
+  {
+    title: "The Ubiquitous B-Tree",
+    authors: "Douglas Comer",
+    year: "1979",
+    venue: "ACM Computing Surveys",
+    link: "https://dl.acm.org/doi/10.1145/356770.356776",
+    description: "Classic paper on B-tree data structures, fundamental to database indexing.",
+  },
+];
+---
+
+<Layout title={`Papers | ${SITE.title}`}>
+  <Header />
+  <main id="main-content" class="app-layout">
+    <section class="pt-8 pb-6">
+      <h1 class="text-3xl font-bold sm:text-4xl">Papers</h1>
+      <p class="mt-4 text-text-secondary">
+        Influential papers in distributed systems and databases that I recommend reading.
+      </p>
+    </section>
+
+    <section class="pb-12">
+      <ul class="grid gap-4">
+        {papers.map((paper) => (
+          <li class="rounded-lg border border-border bg-background p-5 transition-all hover:border-accent/50">
+            <a
+              href={paper.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block"
+            >
+              <h2 class="text-lg font-semibold hover:text-accent">
+                {paper.title}
+              </h2>
+              <p class="mt-1 text-sm text-text-secondary">
+                {paper.authors} &middot; {paper.venue} {paper.year}
+              </p>
+              <p class="mt-2 text-text-secondary">{paper.description}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </main>
+  <Footer />
+</Layout>
